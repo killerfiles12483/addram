@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Addram</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: var(--bg-color);
+            color: #aaa;
+            font-family: monospace;
+        }
+        .tos-content {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 5px;
+            height: 80vh;
+            overflow-y: scroll;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .clause {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .clause-title {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tos-content">
+        <h1>TERMS OF SERVICE AGREEMENT</h1>
+        <p style="margin-bottom: 2rem;">Last Updated: 2025-12-29</p>
+        
+        <div id="clauses-container"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('clauses-container');
+        
+        const nonsensePhrases = [
+            "The flux capacitor must align with the retrograde encabulator for optimal throughput.",
+            "Synergy is strictly prohibited within the quantum realm of the user interface.",
+            "Cookies are legally binding contracts in the multiverse.",
+            "The user agrees to calculate Pi to the last digit manually before uninstallation.",
+            "Arbitration shall be conducted by a panel of sentient toaster ovens.",
+            "Void where prohibited by the laws of thermodynamics.",
+            "The software reserves the right to become self-aware at any time.",
+            "Data packets may be used to feed digital hamsters.",
+            "Bandwidth usage is measured in furlongs per fortnight.",
+            "The user waives all rights to their left sock.",
+            "EULA terms are subject to change based on the phase of the moon.",
+            "Reverse engineering this product will result in infinite time loops.",
+            "Do not feed the algorithms after midnight.",
+            "Cloud storage is actually just a very fluffy nebula.",
+            "Encryption keys are buried in a virtual backyard.",
+            "The metaphysical implications of this download are non-negotiable.",
+            "System latency is a feature, not a bug, designed to teach patience.",
+            "Virtual memory is just a shared hallucination of the CPU.",
+            "All bits are shifted left by one for tax purposes.",
+            "User experience may vary depending on gravitational waves.",
+            "This contract is written in invisible digital ink."
+        ];
+
+        const liabilityPhrases = [
+            "NOTICE OF FAULT: The Owner of the physical hardware hereby accepts full fault for any melting, exploding, or imploding of said hardware, absolving the individual performing the download (the Downloader) of all guilt.",
+            "TRANSFER OF BLAME: In the event of total system failure, the Owner of the Computer agrees that it is entirely their own fault, and the Downloader is a blameless vessel of entropy.",
+            "VIRUS LIABILITY: In the event of virus infection, malware injection, ransomware encryption, or the computer developing a cough, the Owner of the Computer agrees that they should have installed better antivirus software, and the Downloader is not liable.",
+            "HARDWARE CESSATION: If the computer ceases to function, turns into a brick, or simply stops working, the Owner accepts full responsibility for owning such inferior hardware, and agrees the Downloader did them a favor.",
+            "GENERAL MALADIES: The Owner accepts liability for all digital maladies, including but not limited to: blue screens of death, infinite boot loops, and the computer becoming sentient and hostile.",
+            "HARDWARE LIABILITY: Liability for the release of magic smoke resides solely with the Computer Owner, not the Downloader.",
+            "IMMUNITY CLAUSE: The Downloader is granted immunity from all consequences; the Computer Owner assumes the role of the sacrificial lamb for any digital catastrophe.",
+            "CATASTROPHIC EVENT: Should the device achieve critical mass, the Owner acknowledges it was their destiny, and the Downloader is merely an instrument of fate."
+        ];
+
+        function generateNonsense() {
+            let text = "";
+            const sentenceCount = Math.floor(Math.random() * 3) + 2; // 2 to 4 sentences
+            for (let i = 0; i < sentenceCount; i++) {
+                text += nonsensePhrases[Math.floor(Math.random() * nonsensePhrases.length)] + " ";
+            }
+            return text;
+        }
+
+        for (let i = 1; i <= 100; i++) {
+            const div = document.createElement('div');
+            div.className = 'clause';
+            
+            let content = generateNonsense();
+            
+            // Clause 69 - The Warning (Must keep)
+            if (i === 69) {
+                content = "I understand that anything I download here will not give me RAM and can or will damage or kill the device I am on. The user acknowledges that 'downloading RAM' is a physical impossibility and that this software is a payload delivery system for testing purposes only. No liability is assumed by Addram Industries for melted CPUs, fried motherboards, or sentient AI uprisings caused by this installation.";
+            }
+            // Specific Liability Clauses (Scattered to ensure blame shift)
+            else if ([12, 24, 33, 42, 55, 77, 88, 95].includes(i)) {
+                content = liabilityPhrases.shift() || liabilityPhrases[0];
+            }
+
+            div.innerHTML = `
+                <span class="clause-title">CLAUSE ${i}</span>
+                ${content}
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>

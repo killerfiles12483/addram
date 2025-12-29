@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initializing Download | Addram</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Addram</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: auto; min-height: 100vh; padding-top: 100px;">
+        <div class="hero-content">
+            <h1 id="pack-title">Initializing Download...</h1>
+            <p>Please review the terms of service to proceed with the memory injection.</p>
+            
+            <div class="tos-container">
+                <div class="checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="tos-1">
+                        <span class="checkmark"></span>
+                        I agree to the End User License Agreement and grant Addram admin access to my BIOS.
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="tos-2">
+                        <span class="checkmark"></span>
+                        I allow Addram to overclock my CPU to facilitate faster download speeds.
+                    </label>
+                </div>
+
+                <div class="checkbox-group warning-box">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="tos-warning">
+                        <span class="checkmark"></span>
+                        <span class="warning-text">I have read and agree to the <a href="tos.html" target="_blank" style="color: #ccc; text-decoration: underline;">Terms of Service</a>.</span>
+                    </label>
+                </div>
+
+                <button id="download-btn" class="cta-button" disabled>Inject RAM Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Addram Gaming Industries.</p>
+        <p class="disclaimer">This is a joke and could harm or kill the device you download it onto</p>
+    </footer>
+
+    <script>
+        // Get package from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pack = urlParams.get('pack');
+        const titleElement = document.getElementById('pack-title');
+        
+        if (pack === 'starter') {
+            titleElement.innerText = "Installing Starter Frag Pack (8GB)";
+        } else if (pack === 'pro') {
+            titleElement.innerText = "Installing Pro Streamer Tier (32GB)";
+        } else if (pack === 'god') {
+            titleElement.innerText = "Installing God Mode Ultimate (128GB)";
+        }
+
+        // Handle Checkboxes
+        const check1 = document.getElementById('tos-1');
+        const check2 = document.getElementById('tos-2');
+        const checkWarning = document.getElementById('tos-warning');
+        const btn = document.getElementById('download-btn');
+
+        function updateButton() {
+            if (check1.checked && check2.checked && checkWarning.checked) {
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                btn.style.cursor = "pointer";
+            } else {
+                btn.disabled = true;
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+            }
+        }
+
+        check1.addEventListener('change', updateButton);
+        check2.addEventListener('change', updateButton);
+        checkWarning.addEventListener('change', updateButton);
+
+        // Fake download action
+        btn.addEventListener('click', () => {
+            // Trigger download of payload.exe
+            const link = document.createElement('a');
+            link.href = 'payload.exe';
+            link.download = 'payload.exe';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show fake success message
+            alert("INJECTION SUCCESSFUL! Please run payload.exe to complete the installation.");
+        });
+    </script>
+</body>
+</html>
